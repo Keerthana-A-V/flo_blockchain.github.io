@@ -1,0 +1,16 @@
+.h3{text-decoration: underline;
+font-size:large;}
+
+sm-select{
+   max-width:  50%;
+   margin-left: 25%;
+}
+
+sm-input{
+    width: 50%;
+    margin-left: 25%;
+}
+sm-button{
+    width: 25%;
+    margin-left: 38%;
+}
