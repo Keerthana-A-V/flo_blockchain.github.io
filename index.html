@@ -127,6 +127,57 @@
                         <sm-button variant="primary">WRITE</sm-button>
                     </sm-form>
                 </div><br><br>
+                <!--write data multiple-->
+                <div>
+                    <h3 class="h3">Write Data Multiple</h3><br>
+                    <p><b>Syntax: </b>floBlockchainAPI.writeDataMultiple(senderPrivKeys, data, receivers = [floGlobals.adminID], preserveRatio = true)
+                    </p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter Sender private key" animate></sm-input>
+                        <sm-input placeholder="Enter Reciever FLo ID" animate></sm-input>
+                        <sm-input placeholder="Enter Data" animate></sm-input>
+                        <sm-input placeholder="Enter Preserve Ratio" animate></sm-input>
+                        <sm-button variant="primary">WRITE</sm-button>
+                    </sm-form>
+                </div><br><br>
+                <!--Send Tx-->
+                <div>
+                    <h3 class="h3">Send Tx</h3><br>
+                    <p><b>Syntax:</b> floBlockchainAPI.sendTx(senderAddr, receiverAddr, sendAmt, PrivKey, floData = '')
+                    </p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter Reciever FLo ID" animate></sm-input>
+                        <sm-input placeholder="Enter your FLO ID" animate></sm-input>
+                        <sm-input placeholder="Enter your Private Key" animate></sm-input>
+                        <sm-input placeholder="Enter amount FLO coins to send" animate></sm-input>
+                        <sm-input placeholder="Enter Data (optional)" animate></sm-input>
+                        <sm-button variant="primary">SEND</sm-button>
+                    </sm-form>
+                </div><br><br>
+                <!--Send Tx Multiple-->
+                <div>
+                    <h3 class="h3">Send Tx Multiple</h3><br>
+                    <p><b>Syntax: </b>floBlockchainAPI.sendTxMultiple(senderPrivKeys, receivers, floData = '')
+                    </p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter Reciever FLo ID" animate></sm-input>
+                        <sm-input placeholder="Enter your FLO ID" animate></sm-input>
+                        <sm-input placeholder="Enter Data (optional)" animate></sm-input>
+                        <sm-button variant="primary">SEND</sm-button>
+                    </sm-form>
+                </div><br><br>
+                <!--Merge UTXO's-->
+                <div>
+                    <h3 class="h3">MergeUTXO's</h3><br>
+                    <p><b>Syntax: </b>floBlockchainAPI.mergeUTXOs(floID, privKey, floData = '')
+                    </p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter FLO ID to merge UTXO" animate></sm-input>
+                        <sm-input placeholder="Enter private key of FLO ID" animate></sm-input>
+                        <sm-input placeholder="Enter Data" animate></sm-input>
+                        <sm-button variant="primary">MERGE</sm-button>
+                    </sm-form>
+                </div><br><br>
             </section>
             <section class="section">
                 <div class="section__header">
