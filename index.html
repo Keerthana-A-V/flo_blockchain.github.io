@@ -54,14 +54,15 @@
             <theme-toggle></theme-toggle>
         </header>
         <sm-tab-header target="sections">
-            <sm-tab>Section 1</sm-tab>
-            <sm-tab>Section 2</sm-tab>
+            <sm-tab>Read</sm-tab>
+            <sm-tab>Write</sm-tab>
+            <sm-tab>Transactions</sm-tab>
         </sm-tab-header>
         <sm-tab-panels id="sections">
             <section class="section">
                 <div class="section__header">
                     <div class="grid">
-                        <h3>Section Heading</h3>
+                        <h3>Read</h3>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         </p>
@@ -105,7 +106,7 @@
                         </sm-select>  <br>
                         <sm-button variant="primary">REQUEST</sm-button><br>
                     </sm-form>
-                </div>
+                </div><br><br>
                         <!--Get Balance-->
                 <div>
                     <h3 class="h3">Get Balance</h3><br>
@@ -114,33 +115,117 @@
                         <sm-input placeholder="Enter FLO Id"  animate></sm-input><br>
                         <sm-button variant="primary">REQUEST</sm-button><br>
                     </sm-form>
-                </div>
-                <!--Write data-->
-                <div>
-                    <h3 class="h3">Write Data</h3><br>
-                    <p><b>Syntax: </b>floBlockchainAPI.writeData(senderAddr, Data, PrivKey, receiverAddr = floGlobals.adminID)</p>
-                    <sm-form align="center">
-                        <sm-input placeholder="Enter your FLO ID" animate></sm-input>
-                        <sm-input placeholder="Enter Data" animate></sm-input>
-                        <sm-input placeholder="Enter your Private Key" animate></sm-input>
-                        <sm-input placeholder="Enter Reciever FLo ID" animate></sm-input>
-                        <sm-button variant="primary">WRITE</sm-button>
-                    </sm-form>
                 </div><br><br>
-                <!--write data multiple-->
+
+                <!--read data-->
                 <div>
-                    <h3 class="h3">Write Data Multiple</h3><br>
-                    <p><b>Syntax: </b>floBlockchainAPI.writeDataMultiple(senderPrivKeys, data, receivers = [floGlobals.adminID], preserveRatio = true)
+                    <h3 class="h3">Read Data</h3><br>
+                    <p><b>Syntax: </b>floBlockchainAPI.readData(addr, options = {})
                     </p>
                     <sm-form align="center">
-                        <sm-input placeholder="Enter Sender private key" animate></sm-input>
-                        <sm-input placeholder="Enter Reciever FLo ID" animate></sm-input>
-                        <sm-input placeholder="Enter Data" animate></sm-input>
-                        <sm-input placeholder="Enter Preserve Ratio" animate></sm-input>
-                        <sm-button variant="primary">WRITE</sm-button>
+                        <sm-input placeholder="Enter FLO Address" animate></sm-input>
+                        <sm-input placeholder="Enter options"></sm-input>
+                        <sm-button variant="primary">READ</sm-button>
                     </sm-form>
                 </div><br><br>
-                <!--Send Tx-->
+            </section>
+            <section class="section">
+                <div class="section__header">
+                    <div class="grid">
+                        <h3>Write</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </p>
+                    </div>
+                </div>
+                <sm-carousel>
+                    <div class="card">
+                        <h3>Card</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Card</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Card</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Card</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                        </p>
+                    </div>
+                </sm-carousel><br>
+                                <!--Write data-->
+                                <div>
+                                    <h3 class="h3">Write Data</h3><br>
+                                    <p><b>Syntax: </b>floBlockchainAPI.writeData(senderAddr, Data, PrivKey, receiverAddr = floGlobals.adminID)</p>
+                                    <sm-form align="center">
+                                        <sm-input placeholder="Enter your FLO ID" animate></sm-input>
+                                        <sm-input placeholder="Enter Data" animate></sm-input>
+                                        <sm-input placeholder="Enter your Private Key" animate></sm-input>
+                                        <sm-input placeholder="Enter Reciever FLo ID" animate></sm-input>
+                                        <sm-button variant="primary">WRITE</sm-button>
+                                    </sm-form>
+                                </div><br><br>
+                                <!--write data multiple-->
+                                <div>
+                                    <h3 class="h3">Write Data Multiple</h3><br>
+                                    <p><b>Syntax: </b>floBlockchainAPI.writeDataMultiple(senderPrivKeys, data, receivers = [floGlobals.adminID], preserveRatio = true)
+                                    </p>
+                                    <sm-form align="center">
+                                        <sm-input placeholder="Enter Sender private key" animate></sm-input>
+                                        <sm-input placeholder="Enter Reciever FLo ID" animate></sm-input>
+                                        <sm-input placeholder="Enter Data" animate></sm-input>
+                                        <sm-input placeholder="Enter Preserve Ratio" animate></sm-input>
+                                        <sm-button variant="primary">WRITE</sm-button>
+                                    </sm-form>
+                                </div><br><br>
+            </section>
+            <section class="section">
+                <div class="section__header">
+                    <div class="grid">
+                        <h3>Transactions</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </p>
+                    </div>
+                </div>
+                <sm-carousel>
+                    <div class="card">
+                        <h3>Card</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Card</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Card</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Card</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                        </p>
+                    </div>
+                </sm-carousel><br>
+                                <!--Send Tx-->
                 <div>
                     <h3 class="h3">Send Tx</h3><br>
                     <p><b>Syntax:</b> floBlockchainAPI.sendTx(senderAddr, receiverAddr, sendAmt, PrivKey, floData = '')
@@ -178,8 +263,29 @@
                         <sm-button variant="primary">MERGE</sm-button>
                     </sm-form>
                 </div><br><br>
+                <!--Read Tx-->
+                <div>
+                    <h3 class="h3">Read Tx</h3><br>
+                    <p><b>Syntax: </b>floBlockchainAPI.readTxs(addr, from, to)</p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter FLO Address" animate></sm-input>
+                        <sm-input placeholder="Enter where reading Tx starts" animate></sm-input>
+                        <sm-input placeholder="Enter where reading Tx ends" animate></sm-input>
+                        <sm-button variant="primary">READ</sm-button>
+                    </sm-form>
+                </div><br><br>
+                <!--read all tx's-->
+                <div>
+                    <h3 class="h3">Read all Tx's</h3><br>
+                    <p><b>Syntax: </b>floBlockchainAPI.readTxs(addr)
+                    </p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter FLO ID to read Tx's"></sm-input>
+                        <sm-button variant="primary">READ</sm-button>
+                    </sm-form>
+                </div><br><br>
             </section>
-            <section class="section">
+         <!-- <section class="section">
                 <div class="section__header">
                     <div class="grid">
                         <h3>Section Heading</h3>
@@ -219,7 +325,7 @@
                         </p>
                     </div>
                 </sm-carousel>
-            </section>
+            </section>-->  
         </sm-tab-panels>
     </article>
     <script src="js/main_UI.js"></script>
