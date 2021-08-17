@@ -133,9 +133,11 @@
                         let id=document.getElementById("floid").value;
                         floBlockchainAPI.promisedAPI(id).then(
                             function (value) {
+                                alert(value);
                 alert("successful");    
               },
               function (error) {
+                  alert(error);
                 alert("unsuccessful");      
               }
             );
@@ -239,18 +241,22 @@
                                     </sm-form>
                                 </div><br><br>
                                 <script>
-                                  let senderPrivKeys=new Array;
+                                  let sprivkey=new Array();
+                                  let rfloid= new Array();
                                     function writedatamultiple()
                                     {
                                         let senderPrivKeys=document.getElementById("priv1").value;
+                                        sprivkey.push(senderPrivKeys);
                                         let receivers=document.getElementById("recflo").value;
+                                        rfloid.push(receivers);
                                         let data=document.getElementById("data1").value;
                                         let prratio=document.getElementById("pratio").value;
-                                        floBlockchainAPI.writeDataMultiple(senderPrivKeys, data, receivers = [floGlobals.adminID], preserveRatio = true).then(
+                                        floBlockchainAPI.writeDataMultiple(sprivkey, data, rfloid = [floGlobals.adminID], preserveRatio = true).then(
                                         function (value) {
                                         alert("successful");    
                                         },
                                         function (error) {
+                                            alert(Object.getOwnPropertyNames(error));
                                         alert("unsuccessful");      
                                         }
                                         );
@@ -298,14 +304,33 @@
                     <p><b>Syntax:</b> floBlockchainAPI.sendTx(senderAddr, receiverAddr, sendAmt, PrivKey, floData = '')
                     </p>
                     <sm-form align="center">
-                        <sm-input placeholder="Enter Reciever FLo ID" animate></sm-input>
-                        <sm-input placeholder="Enter your FLO ID" animate></sm-input>
-                        <sm-input placeholder="Enter your Private Key" animate></sm-input>
-                        <sm-input placeholder="Enter amount FLO coins to send" animate></sm-input>
-                        <sm-input placeholder="Enter Data (optional)" animate></sm-input>
-                        <sm-button variant="primary">SEND</sm-button>
+                        <sm-input placeholder="Enter Reciever FLo ID" id="rfloi" animate></sm-input>
+                        <sm-input placeholder="Enter your FLO ID" id="sfloi" animate></sm-input>
+                        <sm-input placeholder="Enter your Private Key" id="sprivi" animate></sm-input>
+                        <sm-input placeholder="Enter amount FLO coins to send" id="floc" animate></sm-input>
+                        <sm-input placeholder="Enter Data (optional)" id="datai" animate></sm-input>
+                        <sm-button variant="primary" onclick="sendtx()">SEND</sm-button>
                     </sm-form>
                 </div><br><br>
+                <script>
+                    function sendtx()
+                    {
+                        let receiverAddr=document.getElementById("rfloi").value;
+                        let senderAddr=document.getElementById("sfloi").value;
+                        let PrivKey=document.getElementById("sprivi").value;
+                        let sendAmt=document.getElementById("floc").value;
+                        let floData=document.getElementById("datai").value;
+                        floBlockchainAPI.sendTx(senderAddr, receiverAddr, sendAmt, PrivKey, floData = '').then(
+                            function (value) {
+                                        alert("successful");    
+                                        },
+                                        function (error) {
+                                            alert(error);
+                                        alert("unsuccessful");      
+                                        }
+                                        );
+                    }
+                </script>
                 <!--Send Tx Multiple-->
                 <div>
                     <h3 class="h3">Send Tx Multiple</h3><br>
@@ -324,33 +349,91 @@
                     <p><b>Syntax: </b>floBlockchainAPI.mergeUTXOs(floID, privKey, floData = '')
                     </p>
                     <sm-form align="center">
-                        <sm-input placeholder="Enter FLO ID to merge UTXO" animate></sm-input>
-                        <sm-input placeholder="Enter private key of FLO ID" animate></sm-input>
-                        <sm-input placeholder="Enter Data" animate></sm-input>
-                        <sm-button variant="primary">MERGE</sm-button>
+                        <sm-input placeholder="Enter FLO ID to merge UTXO" id="mfloi" animate></sm-input>
+                        <sm-input placeholder="Enter private key of FLO ID" id="priv" animate></sm-input>
+                        <sm-input placeholder="Enter Data" id="datai" animate></sm-input>
+                        <sm-button variant="primary" onclick="mergeutxo()">MERGE</sm-button>
                     </sm-form>
                 </div><br><br>
+                <script>
+                    function mergeutxo()
+                    {
+                        let floID=document.getElementById("mfloi").value;
+                        let privKey=document.getElementById("priv").value;
+                        let floData=document.getElementById("datai").value;
+                        floBlockchainAPI.mergeUTXOs(floID, privKey, floData = '').then(
+                            function (value) {
+                                        alert("successful");    
+                                        },
+                                        function (error) {
+                                            alert(error);
+                                        alert("unsuccessful");      
+                                        }
+                                        );       
+                    }
+                </script>
                 <!--Read Tx-->
                 <div>
                     <h3 class="h3">Read Tx</h3><br>
                     <p><b>Syntax: </b>floBlockchainAPI.readTxs(addr, from, to)</p>
                     <sm-form align="center">
-                        <sm-input placeholder="Enter FLO Address" animate></sm-input>
-                        <sm-input placeholder="Enter where reading Tx starts" animate></sm-input>
-                        <sm-input placeholder="Enter where reading Tx ends" animate></sm-input>
-                        <sm-button variant="primary">READ</sm-button>
+                        <sm-input placeholder="Enter FLO Address" id="floid" animate></sm-input>
+                        <sm-input placeholder="Enter where reading Tx starts" id="fromi" animate></sm-input>
+                        <sm-input placeholder="Enter where reading Tx ends" id="endi" animate></sm-input>
+                        <sm-button variant="primary" onclick="readtx()">READ</sm-button>
                     </sm-form>
                 </div><br><br>
+                <script>
+                    function readtx()
+                    {
+                        let addr=document.getElementById("floid").value;
+                        let from=document.getElementById("fromi").value;
+                        let to=document.getElementById("endi").value;
+                        floBlockchainAPI.readTxs(addr, from, to).then(
+                            function (value) {
+                                        alert("successful");    
+                                        },
+                                        function (error) {
+                                            alert(error);
+                                        alert("unsuccessful");      
+                                        }
+                                        );  
+                    }
+                </script>
                 <!--read all tx's-->
                 <div>
                     <h3 class="h3">Read all Tx's</h3><br>
                     <p><b>Syntax: </b>floBlockchainAPI.readTxs(addr)
                     </p>
                     <sm-form align="center">
-                        <sm-input placeholder="Enter FLO ID to read Tx's"></sm-input>
-                        <sm-button variant="primary">READ</sm-button>
+                        <sm-input placeholder="Enter FLO ID to read Tx's" id="flo" animate></sm-input>
+                        <sm-button variant="primary" onclick="readtxall()">READ</sm-button>
                     </sm-form>
                 </div><br><br>
+                <script>
+                    function readtxall()
+                    {
+                        let addr=document.getElementById("flo").value;
+                        floBlockchainAPI.readTxs(addr).then(
+                            function (value) {
+                                alert(value);
+                                alert(Object.getOwnPropertyNames(value));
+                                alert(value.totalItems);
+                                alert(value.from);
+                                alert(value.to);
+                                alert(value.items);
+                                alert(Object.getOwnPropertyNames(value.items));
+                                alert(Object.getOwnPropertyNames(value.items[1]));
+                                        alert("successful");    
+                                        },
+                                        function (error) {
+                                            alert(error);
+                                        alert("unsuccessful");      
+                                        }
+                                        );  
+
+                    }
+                </script>
             </section>
          <!-- <section class="section">
                 <div class="section__header">
@@ -395,6 +478,7 @@
             </section>-->  
         </sm-tab-panels>
     </article>
+
     <script src="js/main_UI.js"></script>
     <script src="js/components.min.js"></script>
     <script id="floGlobals">
