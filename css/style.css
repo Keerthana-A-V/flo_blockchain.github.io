@@ -14,3 +14,8 @@ sm-button{
     width: 25%;
     margin-left: 38%;
 }
+.btn{
+    width: 100px;
+    display:inline;
+    align-items: center;
+}

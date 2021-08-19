@@ -323,12 +323,49 @@
                     <p><b>Syntax: </b>floBlockchainAPI.sendTxMultiple(senderPrivKeys, receivers, floData = '')
                     </p>
                     <sm-form align="center">
-                        <sm-input placeholder="Enter Reciever FLo ID" animate></sm-input>
-                        <sm-input placeholder="Enter your FLO ID" animate></sm-input>
-                        <sm-input placeholder="Enter Data (optional)" animate></sm-input>
-                        <sm-button variant="primary">SEND</sm-button>
+                        <sm-input placeholder="Enter sender Private key" animate id="rflo"></sm-input>
+                       <sm-button class="btn" id="add1" variant="primary">ADD</sm-button>
+                        <sm-button class="btn" id="clear1" variant="primary">CLEAR</sm-button>
+                        <sm-input placeholder="Enter reciever FLO ID" animate id="sflo"></sm-input>
+                        <sm-input placeholder="Enter the amount for the floid" animate id="ramt"></sm-input>
+                        <sm-button variant="primary" class="btn" id="add2">ADD</sm-button>
+                        <sm-button variant="primary" class="btn" id="clear2">CLEAR</sm-button>
+                        <sm-input placeholder="Enter Data (optional)" id="data" animate></sm-input>
+                        <sm-button variant="primary" id="sendtxmulti">SEND</sm-button>
                     </sm-form>
                 </div><br><br>
+                <script>
+                    //for sender priv key
+                    let a=new Array();
+                    document.getElementById("add1").addEventListener('click',()=>{
+                        a.push(document.getElementById("rflo").value);
+                        document.getElementById("rflo").value=' ';
+                    })
+                    document.getElementById("clear1").addEventListener('click',()=>{
+                    var r= confirm("Do you really want to clear the array?");
+                    {
+                        if(r==true){
+                            a.length=0;
+                            document.getElementById("rflo").value="";
+                        }
+                     }
+                    })
+                    //for reciever floid and amnt
+                    document.getElementById("add2").addEventListener('click',()=>{
+                        document.getElementById("ramt").value="";
+                        document.getElementById("sflo").value="";
+                    })
+                    document.getElementById("clear2").addEventListener('click',()=>{
+                        var r=confirm("Do you really want to clear the array?");
+                        if(r==true)
+                        {
+                            document.getElementById("sflo").value="";
+                            document.getElementById("ramt").value="";
+                        }
+                    })
+                    
+                    let obj={}
+                </script>
                 <!--Merge UTXO's-->
                 <div>
                     <h3 class="h3">MergeUTXO's</h3><br>
@@ -337,7 +374,7 @@
                     <sm-form align="center">
                         <sm-input placeholder="Enter FLO ID to merge UTXO" id="mfloi" animate></sm-input>
                         <sm-input placeholder="Enter private key of FLO ID" id="priv" animate></sm-input>
-                        <sm-input placeholder="Enter Data" id="datai" animate></sm-input>
+                        <sm-input placeholder="Enter Data (optional)" id="datai" animate></sm-input>
                         <sm-button variant="primary" id="mergeutxo">MERGE</sm-button>
                     </sm-form>
                 </div><br><br>

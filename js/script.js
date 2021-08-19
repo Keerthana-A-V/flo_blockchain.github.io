@@ -7,6 +7,7 @@ document.getElementById("sendtx").addEventListener('click',()=>{
     let floData=document.getElementById("datai").value;
     floBlockchainAPI.sendTx(senderAddr, receiverAddr, sendAmt, PrivKey, floData = '').then(
         function (value) {
+            alert(value);
                     alert("successful");    
                     },
                     function (error) {
