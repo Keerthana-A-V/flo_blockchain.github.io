@@ -18,13 +18,15 @@ document.getElementById("sendtx").addEventListener('click',()=>{
 });
 //readtx
 document.getElementById("readtx"). addEventListener('click',()=>{
-    let addr=document.getElementById("floid").value;
-    let from=parseInt( document.getElementById("fromi").value);
-    let to=parseInt( document.getElementById("endi").value);
+    let addr=document.getElementById("floidd").value;
+    let from=document.getElementById("fromi").value;
+    let to= document.getElementById("endi").value;
 
-floBlockchainAPI.readTxs(addr, from, to).then(
+    floBlockchainAPI.readTxs(addr,from,to).then(
         function (value) {
-            alert(value);
+            let len=to-from;
+            for(let i=0;i<=len;i++)
+                alert(value.items[i].txid)
                     alert("successful");    
                     },
                     function (error) {
@@ -71,3 +73,51 @@ document.getElementById("mergeutxo").addEventListener('click',()=>{
                     }
                     );       
 });
+
+//sentx multiple
+
+//for sender priv key
+let aa=new Array();
+document.getElementById("add1").addEventListener('click',()=>{
+    aa.push(document.getElementById("rflo").value);
+    document.getElementById("rflo").value="";
+})
+document.getElementById("clear1").addEventListener('click',()=>{
+var r= confirm("Do you really want to clear the array?");
+{
+    if(r==true){
+        aa.length=0;
+        document.getElementById("rflo").value="";
+    }
+ }
+})
+let obj={}
+//for reciever floid and amnt
+document.getElementById("add2").addEventListener('click',()=>{
+let key1=document.getElementById("sflo").value;
+let value3=parseInt(document.getElementById("ramt").value);
+obj[key1]=value3;
+document.getElementById("sflo").value="";
+document.getElementById("ramt").value="";
+})
+document.getElementById("clear2").addEventListener('click',()=>{
+    var r=confirm("Do you really want to clear the array?");
+    if(r==true)
+    {   
+        document.getElementById("sflo").value="";
+        document.getElementById("ramt").value="";
+    }
+})
+document.getElementById("sendtxmulti").addEventListener('click',()=>{
+    let data=document.getElementById("data").value;
+    floBlockchainAPI.sendTxMultiple(aa, obj, data = '').then(
+function (value) {
+alert(value);
+alert("successful");    
+},
+function (error) {
+    alert(Object.getOwnPropertyNames(error));
+alert("unsuccessful");      
+}
+);  
+})

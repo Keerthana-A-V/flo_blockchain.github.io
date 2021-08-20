@@ -334,38 +334,7 @@
                         <sm-button variant="primary" id="sendtxmulti">SEND</sm-button>
                     </sm-form>
                 </div><br><br>
-                <script>
-                    //for sender priv key
-                    let a=new Array();
-                    document.getElementById("add1").addEventListener('click',()=>{
-                        a.push(document.getElementById("rflo").value);
-                        document.getElementById("rflo").value=' ';
-                    })
-                    document.getElementById("clear1").addEventListener('click',()=>{
-                    var r= confirm("Do you really want to clear the array?");
-                    {
-                        if(r==true){
-                            a.length=0;
-                            document.getElementById("rflo").value="";
-                        }
-                     }
-                    })
-                    //for reciever floid and amnt
-                    document.getElementById("add2").addEventListener('click',()=>{
-                        document.getElementById("ramt").value="";
-                        document.getElementById("sflo").value="";
-                    })
-                    document.getElementById("clear2").addEventListener('click',()=>{
-                        var r=confirm("Do you really want to clear the array?");
-                        if(r==true)
-                        {
-                            document.getElementById("sflo").value="";
-                            document.getElementById("ramt").value="";
-                        }
-                    })
-                    
-                    let obj={}
-                </script>
+
                 <!--Merge UTXO's-->
                 <div>
                     <h3 class="h3">MergeUTXO's</h3><br>
@@ -383,7 +352,7 @@
                     <h3 class="h3">Read Tx</h3><br>
                     <p><b>Syntax: </b>floBlockchainAPI.readTxs(addr, from, to)</p>
                     <sm-form align="center">
-                        <sm-input placeholder="Enter FLO Address" id="floid" animate></sm-input>
+                        <sm-input placeholder="Enter FLO Address" id="floidd" animate></sm-input>
                         <sm-input placeholder="Enter where reading Tx starts" id="fromi" animate></sm-input>
                         <sm-input placeholder="Enter where reading Tx ends" id="endi" animate></sm-input>
                         <sm-button variant="primary"  id="readtx">READ</sm-button>
@@ -459,7 +428,7 @@
             apiURL: {
                 FLO: ['https://livenet.flocha.in/', 'https://flosight.duckdns.org/'
                 ],
-                FLO_TEST: ['https://testnet-flosight.duckdns.org/', 'https://testnet.flocha.in/']
+                FLO_TEST: ['https://testnet-flosight.duckdns.org/' , 'https://testnet.flocha.in/']
             },
             adminID: "FKAEdnPfjXLHSYwrXQu377ugN4tXU7VGdf",
             sendAmt: 0.001,
