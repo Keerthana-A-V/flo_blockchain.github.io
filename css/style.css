@@ -19,3 +19,9 @@ sm-button{
     display:inline;
     align-items: center;
 }
+.innerhtml{
+    width: 100%;
+    scroll-behavior: smooth;
+    contain: content;
+    font-weight: bold;
+}

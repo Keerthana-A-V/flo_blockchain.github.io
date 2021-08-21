@@ -123,15 +123,15 @@
                     <h3 class="h3">Get Balance</h3><br>
                     <p><b>Syntax:</b> floBlockchainAPI.getBalance(addr)</p><br>
                     <sm-form align="center">
-                        <sm-input id="floid" placeholder="Enter FLO Id"  animate></sm-input><br>
+                        <sm-input id="floidbal" placeholder="Enter FLO Id"  animate></sm-input><br>
                         <sm-button variant="primary" onclick="getbalance()">REQUEST</sm-button><br>
                     </sm-form>
                 </div><br><br>
                 <script>
                     function getbalance()
                     {
-                        let id=document.getElementById("floid").value;
-                        floBlockchainAPI.promisedAPI(id).then(
+                        let id=document.getElementById("floidbal").value;
+                        floBlockchainAPI.getBalance(id).then(
                             function (value) {
                                 alert(value);
                 alert("successful");    
@@ -316,6 +316,9 @@
                         <sm-input placeholder="Enter Data (optional)" id="datai" animate></sm-input>
                         <sm-button variant="primary" id="sendtx">SEND</sm-button>
                     </sm-form>
+                    <div class="innerhtml" align="center">
+                        <br><br><div id="sendtxotp"></div>
+                    </div>
                 </div><br><br>
                 <!--Send Tx Multiple-->
                 <div>
@@ -341,9 +344,9 @@
                     <p><b>Syntax: </b>floBlockchainAPI.mergeUTXOs(floID, privKey, floData = '')
                     </p>
                     <sm-form align="center">
-                        <sm-input placeholder="Enter FLO ID to merge UTXO" id="mfloi" animate></sm-input>
-                        <sm-input placeholder="Enter private key of FLO ID" id="priv" animate></sm-input>
-                        <sm-input placeholder="Enter Data (optional)" id="datai" animate></sm-input>
+                        <sm-input placeholder="Enter FLO ID to merge UTXO" id="mflom" animate></sm-input>
+                        <sm-input placeholder="Enter private key of FLO ID" id="privkm" animate></sm-input>
+                        <sm-input placeholder="Enter Data (optional)" id="datam" animate></sm-input>
                         <sm-button variant="primary" id="mergeutxo">MERGE</sm-button>
                     </sm-form>
                 </div><br><br>
@@ -357,6 +360,11 @@
                         <sm-input placeholder="Enter where reading Tx ends" id="endi" animate></sm-input>
                         <sm-button variant="primary"  id="readtx">READ</sm-button>
                     </sm-form>
+                    <div class="innerhtml" align="center">
+                        <br><br>
+                        <div id="readtxotp1"></div>
+                        <div id="readtxotp" ></div>
+                    </div>
                 </div><br><br>
 
                 <!--read all tx's-->
@@ -368,6 +376,9 @@
                         <sm-input placeholder="Enter FLO ID to read Tx's" id="flo" animate></sm-input>
                         <sm-button variant="primary" id="readtxall">READ</sm-button>
                     </sm-form>
+                    <div class="innerhtml" align="center">
+                       <br><br> <div id="readalltxotp"></div>
+                    </div>
                 </div><br><br>
 
             </section>
