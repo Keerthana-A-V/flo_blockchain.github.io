@@ -79,14 +79,16 @@ document.getElementById("mergeutxo").addEventListener('click',()=>{
     let floID=document.getElementById("mflom").value;
     let privKey=document.getElementById("privkm").value;
     let floData=document.getElementById("datam").value;
-    floBlockchainAPI.mergeUTXOs('FKARxv5HMBzreS5QYsLab8GjRAPg9vKuAS', 'RDDepvgQ1ebUasS8dmCViAjZdvc2uzf6aUs7DewYUZWQkjg7TtLC', floData = '').then(
+    floBlockchainAPI.mergeUTXOs(floID,privKey, floData = '').then(
         function (value) {
-            alert(value);
-                    alert("successful");    
+            var id1=document.querySelector("#mergeotp");
+            var newdiv= document.createElement('sm-copy')
+            document.getElementById("mergeotp").innerHTML="Merge Successful!!<br>Transaction ID: ";
+            newdiv.value=value;
+            id1.appendChild(newdiv); 
                     },
                     function (error) {
-                        console.log(error);
-                    alert("unsuccessful");      
+                        document.getElementById("mergeotp").innerHTML="Merge Unsuccessful!! This might be the problem,<br>"+error;
                     }
                     );       
 });
@@ -105,6 +107,7 @@ var r= confirm("Do you really want to clear the array?");
     if(r==true){
         aa.length=0;
         document.getElementById("rflo").value="";
+        document.getElementById("sendtxmultotp").innerHTML="";
     }
  }
 })
@@ -123,18 +126,23 @@ document.getElementById("clear2").addEventListener('click',()=>{
     {   
         document.getElementById("sflo").value="";
         document.getElementById("ramt").value="";
+        document.getElementById("sendtxmultotp").innerHTML="";
     }
 })
 document.getElementById("sendtxmulti").addEventListener('click',()=>{
     let data=document.getElementById("data").value;
     floBlockchainAPI.sendTxMultiple(aa, obj, data = '').then(
 function (value) {
-alert(value);
-alert("successful");    
+ 
+var id1=document.querySelector("#sendtxmultotp");
+var newdiv= document.createElement('sm-copy')
+document.getElementById("sendtxmultotp").innerHTML="Transaction Successful!!<br>Transaction ID: ";
+newdiv.value=value;
+id1.appendChild(newdiv);  
 },
 function (error) {
-    alert(Object.getOwnPropertyNames(error));
-alert("unsuccessful");      
+   // alert(Object.getOwnPropertyNames(error));
+    document.getElementById("sendtxmultotp").innerHTML="Transaction Failed!!";
 }
 );  
 })
