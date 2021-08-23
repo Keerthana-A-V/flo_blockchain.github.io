@@ -146,3 +146,78 @@ function (error) {
 }
 );  
 })
+//writedata
+document.getElementById("writedata").addEventListener('click',()=>{
+    let senderAddr=document.getElementById("sfloid").value;
+let Data=document.getElementById("datawrite").value;
+let Privkey = document.getElementById("privwrite").value;
+let receiverAddr= document.getElementById("rflowrite").value;
+floBlockchainAPI.writeData(senderAddr, Data, Privkey, receiverAddr = floGlobals.adminID).then(
+function (value) {
+    for(i=0;i<=value.length;i++){
+        
+var id1=document.querySelector("#writedataotp");
+var newdiv= document.createElement('sm-copy')
+document.getElementById("writedataotp").innerHTML="Successful!!<br>Transaction ID: ";
+newdiv.value=value;
+id1.appendChild(newdiv); 
+    }
+    //alert(value[i]);
+//alert("successful");    
+},
+function (error) {
+    document.getElementById("writedataotp").innerHTML="Not able to complete the action!!<br>This might be the problem,<br>"+error;
+}
+);
+})
+
+//writedata multiple
+let sprivkey=new Array();
+let rfloid= new Array();
+
+//for sender priv key
+document.getElementById("wdmpush1").addEventListener('click',()=>{
+    let senderPrivKeys=document.getElementById("priv1").value;
+    sprivkey.push(senderPrivKeys);  
+    document.getElementById("priv1").value="";
+})
+document.getElementById('wdmclear1').addEventListener('click',()=>{
+    let r1=confirm("Do you really want to clear the array?");
+    if(r1==true)
+    {
+        sprivkey.length=0;
+        document.getElementById("writedatamultiotp").innerHTML="";
+        document.getElementById("priv1").value="";
+    }
+})
+//for reciever flo id
+document.getElementById("wdmpush2").addEventListener("click",()=>{
+    let receivers=document.getElementById("recflo").value;
+    rfloid.push(receivers);
+    document.getElementById("recflo").value="";
+})
+document.getElementById('wdmclear2').addEventListener('click',()=>{
+    let r1=confirm("Do you really want to clear the array?");
+    if(r1==true)
+    {
+        rfloid.length=0;
+        document.getElementById("writedatamultiotp").innerHTML="";
+        document.getElementById("recflo").value="";
+    }
+});
+    document.getElementById("writedatamultiple").addEventListener('click',()=>{
+    let data=document.getElementById("data1").value;
+    let preserveRatio=document.getElementById("pratio").value;
+    floBlockchainAPI.writeDataMultiple(sprivkey, data, rfloid = [floGlobals.adminID], preserveRatio = true).then(
+    function (value) {
+        var id1=document.querySelector("#writedatamultiotp");
+        var newdiv= document.createElement('sm-copy')
+        document.getElementById("writedatamultiotp").innerHTML="Successful!!<br>Transaction ID: ";
+        newdiv.value=value;
+        id1.appendChild(newdiv); 
+    },
+    function (error) {
+        document.getElementById("writedatamulti").innerHTML="Not able to complete the action!!<br>This might be the problem,<br>"+error;
+    }
+    );
+    })

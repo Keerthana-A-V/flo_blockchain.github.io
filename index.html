@@ -207,31 +207,12 @@
                                         <sm-input placeholder="Enter your Private Key" id="privwrite" animate></sm-input>
                                         <sm-input placeholder="Enter Reciever FLo ID" id="rflowrite" animate></sm-input>
                                         <sm-input placeholder="Enter Data" id="datawrite" animate></sm-input>
-                                        <sm-button variant="primary" onclick="writedata()">WRITE</sm-button>
+                                        <sm-button variant="primary" id="writedata">WRITE</sm-button>
                                     </sm-form>
                                 </div><br><br>
-                                <script>
-                                    function writedata()
-                                    {
-                                        let senderAddr=document.getElementById("sfloid").value;
-                                        let Data=document.getElementById("datawrite").value;
-                                        let Privkey = document.getElementById("privwrite").value;
-                                        let receiverAddr= document.getElementById("rflowrite").value;
-                                        floBlockchainAPI.writeData(senderAddr, Data, Privkey, receiverAddr = floGlobals.adminID).then(
-                                        function (value) {
-                                            alert(value);
-                                            alert(value[0]);
-                                            for(i=0;i<=value.length;i++)
-                                            alert(value[i]);
-                                        alert("successful");    
-                                        },
-                                        function (error) {
-                                            alert(error);
-                                        alert("unsuccessful");      
-                                        }
-                                        );
-                                    }
-                                </script>
+                                <div class="innerhtml" align="center">
+                                    <div id="writedataotp"></div>
+                                </div>
                                 <!--write data multiple-->
                                 <div>
                                     <h3 class="h3">Write Data Multiple</h3><br>
@@ -239,41 +220,26 @@
                                     </p>
                                     <sm-form align="center">
                                         <sm-input placeholder="Enter Sender private key" id="priv1" animate></sm-input>
+                                        <sm-button variant="primary" id="wdmpush1">PUSH</sm-button>
+                                        <sm-button  id="wdmclear1">CLEAR</sm-button>
                                         <sm-input placeholder="Enter Reciever FLo ID" id="recflo" animate></sm-input>
-                                        <sm-input placeholder="Enter Data" id="data1" animate></sm-input>
-                                        <sm-input placeholder="Enter Preserve Ratio" id="pratio" animate></sm-input>
-                                        <sm-button variant="primary" onclick="writedatamultiple()">WRITE</sm-button>
+                                        <sm-button variant="primary" id="wdmpush2">PUSH</sm-button>
+                                        <sm-button  id="wdmclear2">CLEAR</sm-button>
+                                        <sm-input placeholder="Enter Data(optional)" id="data1" animate></sm-input>
+                                        <sm-input placeholder="Enter Preserve Ratio(optional)" id="pratio" animate></sm-input>
+                                        <sm-button variant="primary" id="writedatamultiple">WRITE</sm-button>
                                     </sm-form>
+                                    <div class="innerhtml" align="center">
+                                        <div id="writedatamultiotp"></div>
+                                    </div>
                                 </div><br><br>
-                                <script>
-                                  let sprivkey=new Array();
-                                  let rfloid= new Array();
-                                    function writedatamultiple()
-                                    {
-                                        let senderPrivKeys=document.getElementById("priv1").value;
-                                        sprivkey.push(senderPrivKeys);
-                                        let receivers=document.getElementById("recflo").value;
-                                        rfloid.push(receivers);
-                                        let data=document.getElementById("data1").value;
-                                        let prratio=document.getElementById("pratio").value;
-                                        floBlockchainAPI.writeDataMultiple(sprivkey, data, rfloid = [floGlobals.adminID], preserveRatio = true).then(
-                                        function (value) {
-                                        alert("successful");    
-                                        },
-                                        function (error) {
-                                            alert(Object.getOwnPropertyNames(error));
-                                        alert("unsuccessful");      
-                                        }
-                                        );
-                                    }
-                                </script>
             </section>
             <section class="section">
                 <div class="section__header">
                     <div class="grid">
                         <h3>Transactions</h3>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            This page contains SendTx,SendTx Multiple,MergeUTXO's,Readtx,ReadallTx.
                         </p>
                     </div>
                 </div>
