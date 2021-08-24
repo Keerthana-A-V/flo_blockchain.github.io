@@ -63,7 +63,7 @@
                     <div class="grid">
                         <h3>Read</h3>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            In this page we have Promised AJAX,Get Balance & Read Data.
                         </p>
                     </div>
                 </div>
@@ -100,38 +100,14 @@
                     <sm-form  align="center">
                         <sm-input placeholder="Enter The URI" id="uri" animate></sm-input>
                         <sm-input placeholder="Enter Get or Post "id="meth" animate></sm-input> <br>
-                        <sm-button variant="primary" onclick="promisedajax()">REQUEST</sm-button><br>
+                        <sm-button variant="primary" id="promisedajax">REQUEST</sm-button><br>
                     </sm-form>
                 </div><br><br>
                 <script>
-                    function promisedajax()
-                    {
-                        let method=document.getElementById("meth").value;
+                        document.getElementById("promisedajax").addEventListener('click',()=>{
+                            let apicall=document.getElementById("meth").value;
                         let uri1=document.getElementById("uri").value;
-                        floBlockchainAPI.promisedAJAX(method,uri1).then(
-                            function (value) {
-                alert("successful");    
-              },
-              function (error) {
-                alert("unsuccessful");      
-              }
-            );
-                    }
-                </script>
-                        <!--Get Balance-->
-                <div>
-                    <h3 class="h3">Get Balance</h3><br>
-                    <p><b>Syntax:</b> floBlockchainAPI.getBalance(addr)</p><br>
-                    <sm-form align="center">
-                        <sm-input id="floidbal" placeholder="Enter FLO Id"  animate></sm-input><br>
-                        <sm-button variant="primary" onclick="getbalance()">REQUEST</sm-button><br>
-                    </sm-form>
-                </div><br><br>
-                <script>
-                    function getbalance()
-                    {
-                        let id=document.getElementById("floidbal").value;
-                        floBlockchainAPI.getBalance(id).then(
+                        floBlockchainAPI.promisedAJAX(apicall, uri1).then(
                             function (value) {
                                 alert(value);
                 alert("successful");    
@@ -141,34 +117,47 @@
                 alert("unsuccessful");      
               }
             );
-    
-                        }
+                        })
                 </script>
+                        <!--Get Balance-->
+                <div>
+                    <h3 class="h3">Get Balance</h3><br>
+                    <p><b>Syntax:</b> floBlockchainAPI.getBalance(addr)</p><br>
+                    <sm-form align="center">
+                        <sm-input id="floidbal" placeholder="Enter FLO Id"  animate></sm-input><br>
+                        <sm-button variant="primary" id="getbalance">REQUEST</sm-button><br>
+                    </sm-form>
+                </div>
+                <div class="innerhtml" align="center">
+                    <div id="getbalanceotp"></div>
+                </div>
+
                 <!--read data-->
                 <div>
                     <h3 class="h3">Read Data</h3><br>
                     <p><b>Syntax: </b>floBlockchainAPI.readData(addr, options = {})
                     </p>
                     <sm-form align="center">
-                        <sm-input placeholder="Enter FLO Address" animate></sm-input>
-                        <sm-input placeholder="Enter options" animate></sm-input>
-                        <sm-button variant="primary">READ</sm-button>
+                        <sm-input placeholder="Enter FLO Address" id="readflo" animate></sm-input>
+                        <p style="margin-left: 25%;">---------------------------------------------- OPTIONS ----------------------------------------------</p>
+                        <sm-input placeholder="Enter limit" id="readlim" animate></sm-input>
+                        <sm-input placeholder="Enter 1 to consider old tx" id="readold" animate></sm-input>
+                        <sm-input placeholder="Enter sentOnly to filter only sent data" id="readsentonly" animate></sm-input>
+                        <sm-input placeholder="Enter pattern" id="readpattern" animate></sm-input>
+                        <sm-input placeholder="Enter custom filter" id="readfilter" animate></sm-input>
+                        <sm-button variant="primary" id="readdata">READ</sm-button>
                     </sm-form>
+                    <div class="innerhtml">
+                        <div id="readdataotp"></div>
+                    </div>
                 </div><br><br>
-                <script>
-                    function readdata()
-                    {
-                        let flo= document.getElementById("fload").value;
-                        
-                    }
-                </script>
             </section>
             <section class="section">
                 <div class="section__header">
                     <div class="grid">
                         <h3>Write</h3>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            In this page we have write data and write data multiple.
                         </p>
                     </div>
                 </div>

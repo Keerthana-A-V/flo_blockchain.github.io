@@ -15,7 +15,7 @@ document.getElementById("sendtx").addEventListener('click',()=>{
                     id1.appendChild(newdiv);  
                     },
                     function (error) {
-                        document.getElementById("sendtxotp").innerHTML="Transaction Failed!! This might be the problem,"+"<br>"+error;
+                        document.getElementById("sendtxotp").innerHTML="Transaction Failed!! This might be the problem, "+error;
                     }
                     );
 });
@@ -41,7 +41,7 @@ document.getElementById("readtx"). addEventListener('click',()=>{
                   //  alert("successful");    
                     },
                     function (error) {
-                        document.getElementById("readtxotp").innerHTML="Failed to fetch Transaction details!! This might be the problem,<br>"+error;
+                        document.getElementById("readtxotp").innerHTML="Failed to fetch Transaction details!! This might be the problem, "+error;
                     }
                     );  
 })
@@ -70,7 +70,7 @@ document.getElementById("readtxall").addEventListener('click',()=> {
                     id1.appendChild(newdiv);
                     }},
                     function (error) {
-                        document.getElementById("readalltxotp").innerHTML="Failed to fetch Transaction details!! This might be the reason,<br>"+error;
+                        document.getElementById("readalltxotp").innerHTML="Failed to fetch Transaction details!! This might be the reason, "+error;
                     }
                     );  
 });
@@ -88,7 +88,7 @@ document.getElementById("mergeutxo").addEventListener('click',()=>{
             id1.appendChild(newdiv); 
                     },
                     function (error) {
-                        document.getElementById("mergeotp").innerHTML="Merge Unsuccessful!! This might be the problem,<br>"+error;
+                        document.getElementById("mergeotp").innerHTML="Merge Unsuccessful!! This might be the problem, "+error;
                     }
                     );       
 });
@@ -166,7 +166,7 @@ id1.appendChild(newdiv);
 //alert("successful");    
 },
 function (error) {
-    document.getElementById("writedataotp").innerHTML="Not able to complete the action!!<br>This might be the problem,<br>"+error;
+    document.getElementById("writedataotp").innerHTML="Not able to complete the action!!<br>This might be the problem, "+error;
 }
 );
 })
@@ -217,7 +217,55 @@ document.getElementById('wdmclear2').addEventListener('click',()=>{
         id1.appendChild(newdiv); 
     },
     function (error) {
-        document.getElementById("writedatamulti").innerHTML="Not able to complete the action!!<br>This might be the problem,<br>"+error;
+        document.getElementById("writedatamulti").innerHTML="Not able to complete the action!!<br>This might be the problem,"+error;
     }
     );
     })
+
+//get balance
+document.getElementById("getbalance").addEventListener('click',()=>{
+    let id=document.getElementById("floidbal").value;
+floBlockchainAPI.getBalance(id).then(
+    function (value) {
+    var id1=document.querySelector("#getbalanceotp");
+    var newdiv= document.createElement('sm-copy')
+    document.getElementById("getbalanceotp").innerHTML="Your Balance is: ";
+    newdiv.value=value;
+    id1.appendChild(newdiv); 
+},
+function (error) {
+document.getElementById("getbalanceotp").innerHTML="Not able to fetch the Balance!!<br>This might be the problem, "+error;
+}
+);
+})
+
+//read data
+let z={};
+document.getElementById("readdata").addEventListener("click",()=>{
+    let readflo1=document.getElementById("readflo").value;
+    z.limit=(document.getElementById("readlim").value);
+    z.ignoreOld=(document.getElementById("readold").value);
+    z.sentOnly=(document.getElementById("readsentonly").value);
+    z.pattern=(document.getElementById("readpattern").value);
+    z.filter=(document.getElementById("readfilter").value);
+
+    floBlockchainAPI.readData(readflo1, z = {}).then(
+        function (value) {
+            document.getElementById("readdataotp").innerHTML="Total transactions of '"+readflo1+"' : "+value.totalTxs+"<br><br>Messages :<br>";
+            for(let i=0;i<value.data.length;i++){
+                var id1=document.querySelector("#readdataotp");
+                if(value.data[i]!=""){
+                    var newdiv= document.createElement('sm-copy')
+                    newdiv.value=value.data[i];
+                    id1.appendChild(newdiv);
+                }
+            }
+        },
+        function (error) {
+            document.getElementById("readdataotp").innerHTML="Transaction Failed!! This might be the problem, "+error;
+        }
+    )
+
+});
+
+//promised ajax
