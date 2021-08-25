@@ -37,6 +37,118 @@
             <sm-button variant="no-outline" class="submit-btn" type="submit">OK</sm-button>
         </div>
     </sm-popup>
+    <sm-popup id="pop1">
+        <h2 align="center">Send Tx</h2><br>
+        <h3 class="h">Parameters:</h3><br><br>
+        <p>
+           <b> sendTx</b> sends a transaction to blockchain, resolves transaction id if the transacation was succsessful.<br>
+
+<b> senderAddr</b> - FLO address from which the data and amount has to be sent.<br>
+    <b>receiverAddr</b> - FLO address to which has to be sent.<br>
+        <b>sendAmt</b> - Amount of FLO coins to be sent to receiver.<br>
+            <b>PrivKey</b> - Private key of sender to verify sender.<br>
+                <b>floData</b> - FLO data (string, max 1040 characters) (optional, default value is empty string)<br>
+                    <b>Resolves: </b>TransactionID (String)<br>
+        </p>
+    </sm-popup>
+    <sm-popup id="pop2">
+        <h2 align="center">SendTx Multiple</h2><br>
+        <h3 class="h">Parameters:</h3><br><br>
+        <p>
+          <b>sendTxMultiple</b> sends a transaction to blockchain from multiple floIDs to multiple floIDs, resolves transaction id if the transacation was succsessful.<br>
+
+          <b>senderPrivKeys</b> - Array of Private keys of the senders (or) Object of private keys with sendAmount for each floID (eg: { privateKey1: sendAmt1, privateKey2: sendAmt2...}) . Note: If passed as Array, then ratio of the balance of the senders are preserved. If passed as Object uses the amount given.<br>
+            <b>receivers</b> - Object of receiver floIDs with receive amount (eg: {receiverID1: receiveAmt1, receiver2: receiveAmt2...}) <br>
+                <b>floData </b>- FLO data (string, max 1040 characters) (optional, default value is empty string) <br>
+                    <b>Resolves:</b> TransactionID (String) <br>
+        </p>
+    </sm-popup>
+    <sm-popup id="pop3">
+        <h2 align="center">Merge UTXOs</h2><br>
+        <h3 class="h">Parameters:</h3><br><br>
+        <p>
+          <b>mergeUTXOs</b> sends a transaction to blockchain that merges all utxos of the given floID. <br>
+
+          <b>floID </b>- FLO address of which the utxos should be merged. <br>
+          <b>privKey </b>- private key of the floID. <br>
+          <b>floData </b>- FLO data (string, max 1040 characters) (optional, default value is empty string) <br>
+          <b>Resolves: </b>TransactionID (String) <br>
+        </p>
+    </sm-popup>
+    <sm-popup id="pop4">
+        <h2 align="center">Read Tx</h2> <br>
+        <h3 class="h">Parameters:</h3><br><br>
+        <p>
+            <b> readTxs</b> reads transactions of specified address between from and to. <br>
+
+                <b>addr </b>- FLO address for which the transactions has to be read. <br>
+                    <b>from </b>- Reading transactions starts from 'from'. <br>
+                        <b>to </b>- Reading transactions ends on 'to'. <br>
+                            <b>Resolves:</b> TransactionData (Object) <br>
+        </p>
+    </sm-popup>
+    <sm-popup id="pop5">
+        <h2 align="center">Read all Tx's</h2> <br>
+        <h3 class="h">Parameters:</h3> <br><br>
+        <p>
+            <b>readAllTxs </b>reads all transactions of specified address(newest first). <br>
+
+            <b>addr </b>- FLO address for which the transactions has to be read. <br>
+<b>Resolves:</b> TransactionData (Object) <br>
+        </p>
+    </sm-popup>
+    <sm-popup id="pop6">
+        <h2 align="center">Get Balance</h2><br>
+        <h3 class="h">Parameters:</h3><br><br>
+        <p>
+           <b>getBalance </b>requests balance for specified FLO address.<br>
+
+           <b>addr</b> - FLO address for which balance has to be retrieved <br>
+            <b>Resolves:</b> balance (Number) <br>
+        </p>
+    </sm-popup>
+    <sm-popup id="pop7">
+        <h2 align="center">Read Data</h2><br>
+        <h3 class="h">Parameters:</h3><br><br>
+        <p>
+           <b> readData</b> reads FLO data from transactions of specified address <br>
+
+           <b>addr </b>- FLO address for which the transactions data has to be read.<br>
+            <b>options </b>- Contains options for filter data from transactions.<br>
+                <b>limit </b>: maximum number of filtered data (default = no limit)<br>
+                    <b>ignoreOld </b>: ignore old transactions (default = 0)<br>
+                        <b>sentOnly </b>: filters only sent data<br>
+                            <b>pattern</b> : filters data that contains pattern as an object key in the JSON string<br>
+                                <b>filter </b>: custom filter funtion for floData (eg . filter: d => {return d[0] == '$'})<br>
+                                    <b>Resolves:</b> Object {totalTxs, floData (Array)}<br>
+        </p>
+    </sm-popup>
+    <sm-popup id="pop8">
+        <h2 align="center">Write Data</h2><br>
+        <h3 class="h">Parameters:</h3><br><br>
+        <p>
+           <b> writeData</b> writes data into blockchain, resolves transaction id if the transacation was succsessful. <br>
+
+           <b>senderAddr</b> - FLO address from which the data and amount has to be sent. <br>
+            <b>Data </b>- FLO data (string, max 1040 characters) <br>
+                <b>receiverAddr</b> - FLO address to which has to be sent. (Default is specified in floGlobals.adminID) <br>
+                    <b>PrivKey </b>- Private key of sender <br>
+                        <b>Resolves:</b> TransactionID (String) <br>
+        </p>
+    </sm-popup>
+    <sm-popup id="pop9">
+        <h2 align="center">Write Data Multiple</h2><br>
+        <h3 class="h">Parameters:</h3><br><br>
+        <p>
+           <b> writeDataMultiple </b>writes data into blockchain from multiple floIDs to multiple floIDs, resolves transaction id if the transacation was succsessful. <br>
+
+           <b>senderPrivKeys </b>- Array of Private keys of the senders. <br>
+            <b>Data </b>- FLO data (string, max 1040 characters) <br>
+                <b>receivers</b> - Array of receiver FLO Addresses. (Default is specified in floGlobals.adminID) <br>
+                    <b>preserveRatio </b>- boolean (true: preserves the ratio of the balance of senders, false: all senders contribute equal amount to the transaction) (optional, default is true) <br>
+                        <b>Resolves: </b>TransactionID (String)<br>
+        </p>
+    </sm-popup>
     <article id="home" class="page">
         <header id="main_header" class="full-bleed">
             <div id="logo">
@@ -53,76 +165,173 @@
             <theme-toggle></theme-toggle>
         </header>
         <sm-tab-header target="sections">
+            <sm-tab>Transactions</sm-tab>
             <sm-tab>Read</sm-tab>
             <sm-tab>Write</sm-tab>
-            <sm-tab>Transactions</sm-tab>
         </sm-tab-header>
         <sm-tab-panels id="sections">
             <section class="section">
                 <div class="section__header">
                     <div class="grid">
-                        <h3>Read</h3>
+                        <h3>Transactions</h3>
                         <p>
-                            In this page we have Promised AJAX,Get Balance & Read Data.
+                            This page contains SendTx,SendTx Multiple,MergeUTXO's,Readtx,ReadallTx.
                         </p>
                     </div>
                 </div>
                 <sm-carousel>
                     <div class="card">
-                        <h3>Card</h3>
+                       <a href="#trc1" ><h3>SendTx</h3></a>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                           It is used to send a transaction to blockchain, resolves transaction id if the transacation was succsessful.
                         </p>
                     </div>
                     <div class="card">
-                        <h3>Card</h3>
+                        <a href="#trc2" ><h3>SendTx multiple</h3></a>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                            It is used to  send a transaction to blockchain from multiple floIDs to multiple FLO Id's.
                         </p>
                     </div>
                     <div class="card">
-                        <h3>Card</h3>
+                        <a href="#trc3" > <h3>Merge UTXOs</h3></a>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                            It is used to send a transaction to blockchain that merges all utxos of the given FLO Id.
                         </p>
                     </div>
                     <div class="card">
-                        <h3>Card</h3>
+                        <a href="#trc4" >  <h3>ReadTx</h3></a>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                            It is used to read transactions of specified address between from and to.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <a href="#trc5" >  <h3>ReadallTx</h3></a>
+                        <p>
+                            It is used to read all transactions of specified address(newest first).
                         </p>
                     </div>
                 </sm-carousel><br>
-                <!--Promised AJAx-->
-                <div>
-                    <h3 class="h3">Promised AJAX</h3><br>
-                   <p><b> Syntax:</b> floBlockchainAPI.promisedAJAX(method, uri)</p><br>
-                    <sm-form  align="center">
-                        <sm-input placeholder="Enter The URI" id="uri" animate></sm-input>
-                        <sm-input placeholder="Enter Get or Post "id="meth" animate></sm-input> <br>
-                        <sm-button variant="primary" id="promisedajax">REQUEST</sm-button><br>
+                <!--Send Tx-->
+                <div id="trc1">
+                    <h3 class="h3">Send Tx</h3><br>
+                    <p><b>Syntax:</b> floBlockchainAPI.sendTx(senderAddr, receiverAddr, sendAmt, PrivKey, floData = '')<br>
+                        <a onclick="pp('pop1')" class="popup">Read more about SendTx>>></a>
+                    </p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter Reciever FLo ID" id="rfloi" animate></sm-input>
+                        <sm-input placeholder="Enter your FLO ID" id="sfloi" animate></sm-input>
+                        <sm-input placeholder="Enter your Private Key" id="sprivi" animate></sm-input>
+                        <sm-input placeholder="Enter amount FLO coins to send" id="floc" animate></sm-input>
+                        <sm-input placeholder="Enter Data (optional)" id="datai" animate></sm-input>
+                        <sm-button variant="primary" id="sendtx">SEND</sm-button>
                     </sm-form>
+                    <div class="innerhtml" align="center">
+                        <br><br><div id="sendtxotp"></div>
+                    </div>
                 </div><br><br>
-                <script>
-                        document.getElementById("promisedajax").addEventListener('click',()=>{
-                            let apicall=document.getElementById("meth").value;
-                        let uri1=document.getElementById("uri").value;
-                        floBlockchainAPI.promisedAJAX(apicall, uri1).then(
-                            function (value) {
-                                alert(value);
-                alert("successful");    
-              },
-              function (error) {
-                  alert(error);
-                alert("unsuccessful");      
-              }
-            );
-                        })
-                </script>
+                <!--Send Tx Multiple-->
+                <div id="trc2">
+                    <h3 class="h3">Send Tx Multiple</h3><br>
+                    <p><b>Syntax: </b>floBlockchainAPI.sendTxMultiple(senderPrivKeys, receivers, floData = '')<br>
+                        <a onclick="pp('pop2')" class="popup">Read more about SendTx Multiple>>></a>
+                    </p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter sender Private key" animate id="rflo"></sm-input>
+                       <sm-button class="btn" id="add1" variant="primary">ADD</sm-button>
+                        <sm-button class="btn" id="clear1" >CLEAR</sm-button>
+                        <sm-input placeholder="Enter reciever FLO ID" animate id="sflo"></sm-input>
+                        <sm-input placeholder="Enter the amount for the floid" animate id="ramt"></sm-input>
+                        <sm-button variant="primary" class="btn" id="add2">ADD</sm-button>
+                        <sm-button  class="btn" id="clear2">CLEAR</sm-button>
+                        <sm-input placeholder="Enter Data (optional)" id="data" animate></sm-input>
+                        <sm-button variant="primary" id="sendtxmulti">SEND</sm-button>
+                    </sm-form>
+                    <div class="innerhtml" align="center">
+                       <br><br> <div id="sendtxmultotp"></div>
+                    </div>
+                </div><br><br>
+
+                <!--Merge UTXO's-->
+                <div id="trc3">
+                    <h3 class="h3">MergeUTXO's</h3><br>
+                    <p><b>Syntax: </b>floBlockchainAPI.mergeUTXOs(floID, privKey, floData = '')<br>
+                        <a onclick="pp('pop3')" class="popup">Read more about Merge UTXO's>>></a>
+                    </p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter FLO ID to merge UTXO" id="mflom" animate></sm-input>
+                        <sm-input placeholder="Enter private key of FLO ID" id="privkm" animate></sm-input>
+                        <sm-input placeholder="Enter Data (optional)" id="datam" animate></sm-input>
+                        <sm-button variant="primary" id="mergeutxo">MERGE</sm-button>
+                    </sm-form>
+                    <div class="innerhtml" align="center">
+                        <br><br><div id="mergeotp"></div>
+                    </div>
+                </div><br><br>
+                <!--Read Tx-->
+                <div id="trc4">
+                    <h3 class="h3">Read Tx</h3><br>
+                    <p><b>Syntax: </b>floBlockchainAPI.readTxs(addr, from, to)<br>
+                        <a onclick="pp('pop4')" class="popup">Read more about ReadTx>>></a>
+                    </p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter FLO Address" id="floidd" animate></sm-input>
+                        <sm-input placeholder="Enter where reading Tx starts" id="fromi" animate></sm-input>
+                        <sm-input placeholder="Enter where reading Tx ends" id="endi" animate></sm-input>
+                        <sm-button variant="primary"  id="readtx">READ</sm-button>
+                    </sm-form>
+                    <div class="innerhtml" align="center">
+                        <br><br>
+                        <div id="readtxotp1"></div>
+                        <div id="readtxotp" ></div>
+                    </div>
+                </div><br><br>
+
+                <!--read all tx's-->
+                <div id="trc5">
+                    <h3 class="h3">Read all Tx's</h3><br>
+                    <p><b>Syntax: </b>floBlockchainAPI.readTxs(addr)<br>
+                        <a onclick="pp('pop5')" class="popup">Read more about ReadallTx's>>></a>
+                    </p>
+                    <sm-form align="center">
+                        <sm-input placeholder="Enter FLO ID to read Tx's" id="flo" animate></sm-input>
+                        <sm-button variant="primary" id="readtxall">READ</sm-button>
+                    </sm-form>
+                    <div class="innerhtml" align="center">
+                       <br><br> <div id="readalltxotp"></div>
+                    </div>
+                </div><br><br>
+
+            </section>
+            <section class="section">
+                <div class="section__header">
+                    <div class="grid">
+                        <h3>Read</h3>
+                        <p>
+                            In this page we have Get Balance & Read Data.
+                        </p>
+                    </div>
+                </div>
+                <sm-carousel>
+                    <div class="card">
+                    <a href="#readc1"> <h3>Get Balance</h3></a>
+                        <p>
+                            It is used to fetch the Balance of an FLO Id.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <a href="#readc2"><h3>Read Data</h3></a>
+                        <p>
+                            It is used to read FLO data from transactions of specified address.
+                        </p>
+                    </div>
+ 
+                </sm-carousel><br>
                         <!--Get Balance-->
-                <div>
+                <div id="readc1">
                     <h3 class="h3">Get Balance</h3><br>
-                    <p><b>Syntax:</b> floBlockchainAPI.getBalance(addr)</p><br>
+                    <p><b>Syntax:</b> floBlockchainAPI.getBalance(addr)<br>
+                        <a onclick="pp('pop6')" class="popup">Read more about Get Balance>>></a>
+                    </p><br>
                     <sm-form align="center">
                         <sm-input id="floidbal" placeholder="Enter FLO Id"  animate></sm-input><br>
                         <sm-button variant="primary" id="getbalance">REQUEST</sm-button><br>
@@ -133,9 +342,10 @@
                 </div>
 
                 <!--read data-->
-                <div>
+                <div id="readc2">
                     <h3 class="h3">Read Data</h3><br>
-                    <p><b>Syntax: </b>floBlockchainAPI.readData(addr, options = {})
+                    <p><b>Syntax: </b>floBlockchainAPI.readData(addr, options = {})<br>
+                        <a onclick="pp('pop7')" class="popup">Read more about Read Data>>></a>
                     </p>
                     <sm-form align="center">
                         <sm-input placeholder="Enter FLO Address" id="readflo" animate></sm-input>
@@ -163,34 +373,24 @@
                 </div>
                 <sm-carousel>
                     <div class="card">
-                        <h3>Card</h3>
+                     <a href="#writec1">   <h3>Write Data</h3></a>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                            It is used to write data into blockchain, resolves transaction id if the transacation was succsessful.
                         </p>
                     </div>
                     <div class="card">
-                        <h3>Card</h3>
+                        <a href="#writec2">   <h3>Write Data Multiple</h3></a>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
-                        </p>
-                    </div>
-                    <div class="card">
-                        <h3>Card</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
-                        </p>
-                    </div>
-                    <div class="card">
-                        <h3>Card</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
+                           It is used to writes data into blockchain from multiple FLO ID's to multiple FLO ID's, resolves transaction id if the transacation was succsessful.
                         </p>
                     </div>
                 </sm-carousel><br>
                                 <!--Write data-->
-                                <div>
+                                <div id="writec1">
                                     <h3 class="h3">Write Data</h3><br>
-                                    <p><b>Syntax: </b>floBlockchainAPI.writeData(senderAddr, Data, PrivKey, receiverAddr = floGlobals.adminID)</p>
+                                    <p><b>Syntax: </b>floBlockchainAPI.writeData(senderAddr, Data, PrivKey, receiverAddr = floGlobals.adminID)<br>
+                                        <a onclick="pp('pop8')" class="popup">Read more about Write Data>>></a>
+                                    </p>
                                     <sm-form align="center">
                                         <sm-input placeholder="Enter your FLO ID" id="sfloid" animate></sm-input>
                                         <sm-input placeholder="Enter your Private Key" id="privwrite" animate></sm-input>
@@ -203,9 +403,10 @@
                                     <div id="writedataotp"></div>
                                 </div>
                                 <!--write data multiple-->
-                                <div>
+                                <div id="writec2">
                                     <h3 class="h3">Write Data Multiple</h3><br>
-                                    <p><b>Syntax: </b>floBlockchainAPI.writeDataMultiple(senderPrivKeys, data, receivers = [floGlobals.adminID], preserveRatio = true)
+                                    <p><b>Syntax: </b>floBlockchainAPI.writeDataMultiple(senderPrivKeys, data, receivers = [floGlobals.adminID], preserveRatio = true)<br>
+                                        <a onclick="pp('pop9')" class="popup">Read more about Write Data Multiple>>></a>
                                     </p>
                                     <sm-form align="center">
                                         <sm-input placeholder="Enter Sender private key" id="priv1" animate></sm-input>
@@ -223,126 +424,7 @@
                                     </div>
                                 </div><br><br>
             </section>
-            <section class="section">
-                <div class="section__header">
-                    <div class="grid">
-                        <h3>Transactions</h3>
-                        <p>
-                            This page contains SendTx,SendTx Multiple,MergeUTXO's,Readtx,ReadallTx.
-                        </p>
-                    </div>
-                </div>
-                <sm-carousel>
-                    <div class="card">
-                        <h3>Card</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
-                        </p>
-                    </div>
-                    <div class="card">
-                        <h3>Card</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
-                        </p>
-                    </div>
-                    <div class="card">
-                        <h3>Card</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
-                        </p>
-                    </div>
-                    <div class="card">
-                        <h3>Card</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia.
-                        </p>
-                    </div>
-                </sm-carousel><br>
-                <!--Send Tx-->
-                <div>
-                    <h3 class="h3">Send Tx</h3><br>
-                    <p><b>Syntax:</b> floBlockchainAPI.sendTx(senderAddr, receiverAddr, sendAmt, PrivKey, floData = '')
-                    </p>
-                    <sm-form align="center">
-                        <sm-input placeholder="Enter Reciever FLo ID" id="rfloi" animate></sm-input>
-                        <sm-input placeholder="Enter your FLO ID" id="sfloi" animate></sm-input>
-                        <sm-input placeholder="Enter your Private Key" id="sprivi" animate></sm-input>
-                        <sm-input placeholder="Enter amount FLO coins to send" id="floc" animate></sm-input>
-                        <sm-input placeholder="Enter Data (optional)" id="datai" animate></sm-input>
-                        <sm-button variant="primary" id="sendtx">SEND</sm-button>
-                    </sm-form>
-                    <div class="innerhtml" align="center">
-                        <br><br><div id="sendtxotp"></div>
-                    </div>
-                </div><br><br>
-                <!--Send Tx Multiple-->
-                <div>
-                    <h3 class="h3">Send Tx Multiple</h3><br>
-                    <p><b>Syntax: </b>floBlockchainAPI.sendTxMultiple(senderPrivKeys, receivers, floData = '')
-                    </p>
-                    <sm-form align="center">
-                        <sm-input placeholder="Enter sender Private key" animate id="rflo"></sm-input>
-                       <sm-button class="btn" id="add1" variant="primary">ADD</sm-button>
-                        <sm-button class="btn" id="clear1" variant="primary">CLEAR</sm-button>
-                        <sm-input placeholder="Enter reciever FLO ID" animate id="sflo"></sm-input>
-                        <sm-input placeholder="Enter the amount for the floid" animate id="ramt"></sm-input>
-                        <sm-button variant="primary" class="btn" id="add2">ADD</sm-button>
-                        <sm-button variant="primary" class="btn" id="clear2">CLEAR</sm-button>
-                        <sm-input placeholder="Enter Data (optional)" id="data" animate></sm-input>
-                        <sm-button variant="primary" id="sendtxmulti">SEND</sm-button>
-                    </sm-form>
-                    <div class="innerhtml" align="center">
-                       <br><br> <div id="sendtxmultotp"></div>
-                    </div>
-                </div><br><br>
 
-                <!--Merge UTXO's-->
-                <div>
-                    <h3 class="h3">MergeUTXO's</h3><br>
-                    <p><b>Syntax: </b>floBlockchainAPI.mergeUTXOs(floID, privKey, floData = '')
-                    </p>
-                    <sm-form align="center">
-                        <sm-input placeholder="Enter FLO ID to merge UTXO" id="mflom" animate></sm-input>
-                        <sm-input placeholder="Enter private key of FLO ID" id="privkm" animate></sm-input>
-                        <sm-input placeholder="Enter Data (optional)" id="datam" animate></sm-input>
-                        <sm-button variant="primary" id="mergeutxo">MERGE</sm-button>
-                    </sm-form>
-                    <div class="innerhtml" align="center">
-                        <br><br><div id="mergeotp"></div>
-                    </div>
-                </div><br><br>
-                <!--Read Tx-->
-                <div>
-                    <h3 class="h3">Read Tx</h3><br>
-                    <p><b>Syntax: </b>floBlockchainAPI.readTxs(addr, from, to)</p>
-                    <sm-form align="center">
-                        <sm-input placeholder="Enter FLO Address" id="floidd" animate></sm-input>
-                        <sm-input placeholder="Enter where reading Tx starts" id="fromi" animate></sm-input>
-                        <sm-input placeholder="Enter where reading Tx ends" id="endi" animate></sm-input>
-                        <sm-button variant="primary"  id="readtx">READ</sm-button>
-                    </sm-form>
-                    <div class="innerhtml" align="center">
-                        <br><br>
-                        <div id="readtxotp1"></div>
-                        <div id="readtxotp" ></div>
-                    </div>
-                </div><br><br>
-
-                <!--read all tx's-->
-                <div>
-                    <h3 class="h3">Read all Tx's</h3><br>
-                    <p><b>Syntax: </b>floBlockchainAPI.readTxs(addr)
-                    </p>
-                    <sm-form align="center">
-                        <sm-input placeholder="Enter FLO ID to read Tx's" id="flo" animate></sm-input>
-                        <sm-button variant="primary" id="readtxall">READ</sm-button>
-                    </sm-form>
-                    <div class="innerhtml" align="center">
-                       <br><br> <div id="readalltxotp"></div>
-                    </div>
-                </div><br><br>
-
-            </section>
          <!-- <section class="section">
                 <div class="section__header">
                     <div class="grid">

@@ -268,4 +268,11 @@ document.getElementById("readdata").addEventListener("click",()=>{
 
 });
 
-//promised ajax
+//popup
+
+
+function pp(id)
+{
+  const mypop=document.getElementById(id);
+  mypop.show();
+}
