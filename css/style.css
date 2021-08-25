@@ -31,3 +31,19 @@ sm-button{
     font-size: medium;
     text-decoration: underline;
 }
+@media screen and (min-width:200px) and (max-width:900px)
+{
+    sm-input{
+        width: 100%;
+        margin-left:0px;
+        display:block;
+    }
+}
+@media screen  and (max-width:480px)
+{
+    sm-button{
+        width:70%;
+        margin-left: 0px;
+        align-items: center;
+    }
+}
