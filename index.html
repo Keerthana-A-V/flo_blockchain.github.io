@@ -221,7 +221,7 @@
                         <sm-input placeholder="Enter Reciever FLo ID" id="rfloi" animate></sm-input>
                         <sm-input placeholder="Enter your FLO ID" id="sfloi" animate></sm-input>
                         <sm-input placeholder="Enter your Private Key" id="sprivi" animate></sm-input>
-                        <sm-input placeholder="Enter amount FLO coins to send" id="floc" animate></sm-input>
+                        <sm-input placeholder="Enter amount FLO coins to send" id="floc" animate type="number"></sm-input>
                         <sm-input placeholder="Enter Data (optional)" id="datai" animate></sm-input>
                         <sm-button variant="primary" id="sendtx">SEND</sm-button>
                     </sm-form>
@@ -236,13 +236,14 @@
                         <a onclick="pp('pop2')" class="popup">Read more about SendTx Multiple>>></a>
                     </p>
                     <sm-form align="center">
-                        <sm-input placeholder="Enter sender Private key" animate id="rflo"></sm-input>
+                        <sm-input placeholder="Enter sender Private key" animate id="rflo" ></sm-input>
                        <sm-button class="btn" id="add1" variant="primary">ADD</sm-button>
                         <sm-button class="btn" id="clear1" >CLEAR</sm-button>
-                        <sm-input placeholder="Enter reciever FLO ID" animate id="sflo"></sm-input>
-                        <sm-input placeholder="Enter the amount for the floid" animate id="ramt"></sm-input>
+                          <sm-input placeholder="Enter reciever FLO ID" animate id="sflo"></sm-input>
+                        <sm-input placeholder="Enter the amount for the floid" animate id="ramt" type="number"></sm-input>
                         <sm-button variant="primary" class="btn" id="add2">ADD</sm-button>
                         <sm-button  class="btn" id="clear2">CLEAR</sm-button>
+                        <div class="innerhtml"><div id="eralert"></div></div>
                         <sm-input placeholder="Enter Data (optional)" id="data" animate></sm-input>
                         <sm-button variant="primary" id="sendtxmulti">SEND</sm-button>
                     </sm-form>
@@ -275,8 +276,8 @@
                     </p>
                     <sm-form align="center">
                         <sm-input placeholder="Enter FLO Address" id="floidd" animate></sm-input>
-                        <sm-input placeholder="Enter where reading Tx starts" id="fromi" animate></sm-input>
-                        <sm-input placeholder="Enter where reading Tx ends" id="endi" animate></sm-input>
+                        <sm-input placeholder="Enter where reading Tx starts" id="fromi" type="number" animate></sm-input>
+                        <sm-input placeholder="Enter where reading Tx ends" id="endi" type="number" animate></sm-input>
                         <sm-button variant="primary"  id="readtx">READ</sm-button>
                     </sm-form>
                     <div class="innerhtml" align="center">
