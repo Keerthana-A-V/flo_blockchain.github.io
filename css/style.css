@@ -21,6 +21,7 @@ sm-button{
     contain: content;
     font-weight: bold;
 }
+
 .popup{
     color:blueviolet;
     text-decoration: underline;
@@ -47,3 +48,8 @@ sm-button{
         align-items: center;
     }
 }
+.al1{
+    color: gray;
+    font-weight: lighter;
+}
+

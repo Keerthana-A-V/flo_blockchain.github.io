@@ -225,10 +225,16 @@
                         <sm-input placeholder="Enter Data (optional)" id="datai" animate></sm-input>
                         <sm-button variant="primary" id="sendtx">SEND</sm-button>
                     </sm-form>
+                    <div id="al1" align="center"></div>
                     <div class="innerhtml" align="center">
                         <br><br><div id="sendtxotp"></div>
                     </div>
                 </div><br><br>
+                <script>
+                    document.getElementById("sendtx").addEventListener('click',()=>{
+                        document.getElementById("al1").innerHTML="<br>Constructing Send Tx : floBlockchainAPI.sendTx(senderAddr, receiverAddr, sendAmt, PrivKey, floData = '')"
+                    })
+                </script>
                 <!--Send Tx Multiple-->
                 <div id="trc2">
                     <h3 class="h3">Send Tx Multiple</h3><br>
@@ -358,8 +364,9 @@
                         <sm-input placeholder="Enter custom filter" id="readfilter" animate></sm-input>
                         <sm-button variant="primary" id="readdata">READ</sm-button>
                     </sm-form>
-                    <div class="innerhtml">
-                        <div id="readdataotp"></div>
+                    <div class="innerhtml" align="center">
+                       <br> <div id="readdataotp"></div>
+                        <div id="readdataotp1"></div>
                     </div>
                 </div><br><br>
             </section>
@@ -416,12 +423,13 @@
                                         <sm-input placeholder="Enter Reciever FLo ID" id="recflo" animate></sm-input>
                                         <sm-button variant="primary" id="wdmpush2">PUSH</sm-button>
                                         <sm-button  id="wdmclear2">CLEAR</sm-button>
+                                        <div class="innerhtml"><div id="errwrite11"></div></div>
                                         <sm-input placeholder="Enter Data(optional)" id="data1" animate></sm-input>
                                         <sm-input placeholder="Enter Preserve Ratio(optional)" id="pratio" animate></sm-input>
                                         <sm-button variant="primary" id="writedatamultiple">WRITE</sm-button>
                                     </sm-form>
                                     <div class="innerhtml" align="center">
-                                        <div id="writedatamultiotp"></div>
+                                        <br><div id="writedatamultiotp"></div>
                                     </div>
                                 </div><br><br>
             </section>

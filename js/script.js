@@ -218,9 +218,16 @@ document.getElementById('wdmclear1').addEventListener('click',()=>{
 })
 //for reciever flo id
 document.getElementById("wdmpush2").addEventListener("click",()=>{
+   if( floCrypto.validateAddr(document.getElementById("recflo").value)){
     let receivers=document.getElementById("recflo").value;
     rfloid.push(receivers);
     document.getElementById("recflo").value="";
+    document.getElementById("errwrite").value="";
+   }
+   else{
+    document.getElementById("recflo").value="";
+    document.getElementById("errwrite11").innerHTML="Couldn't complete action , This might be the problem,<br>Invalid FLO ID";
+   }
 })
 document.getElementById('wdmclear2').addEventListener('click',()=>{
     let r1=confirm("Do you really want to clear the array?");
@@ -229,9 +236,11 @@ document.getElementById('wdmclear2').addEventListener('click',()=>{
         rfloid.length=0;
         document.getElementById("writedatamultiotp").innerHTML="";
         document.getElementById("recflo").value="";
+        document.getElementById("errwrite11").innerHTML="";
     }
 });
     document.getElementById("writedatamultiple").addEventListener('click',()=>{
+        if(sprivkey.length!=0){
     let data=document.getElementById("data1").value;
     let preserveRatio=document.getElementById("pratio").value;
     floBlockchainAPI.writeDataMultiple(sprivkey, data, rfloid = [floGlobals.adminID], preserveRatio = true).then(
@@ -243,13 +252,17 @@ document.getElementById('wdmclear2').addEventListener('click',()=>{
         id1.appendChild(newdiv); 
     },
     function (error) {
-        document.getElementById("writedatamulti").innerHTML="Not able to complete the action!!<br>This might be the problem,"+error;
+        document.getElementById("writedatamultiotp").innerHTML="Not able to complete the action!!<br>This might be the problem,"+Object.getOwnPropertyNames( error);
     }
-    );
+    );}
+    else{
+        document.getElementById("writedatamultiotp").innerHTML="Not able to complete the action!!<br>This might be the problem,<br>No sender private key entered!!";
+    }
     })
 
 //get balance
 document.getElementById("getbalance").addEventListener('click',()=>{
+    if(floCrypto.validateAddr(document.getElementById("floidbal").value)){
     let id=document.getElementById("floidbal").value;
 floBlockchainAPI.getBalance(id).then(
     function (value) {
@@ -262,35 +275,49 @@ floBlockchainAPI.getBalance(id).then(
 function (error) {
 document.getElementById("getbalanceotp").innerHTML="Not able to fetch the Balance!!<br>This might be the problem, "+error;
 }
-);
+);}
+else{
+    document.getElementById("getbalanceotp").innerHTML="Not able to fetch the Balance!!<br>This might be the problem, <br>Invalid FLO ID!!";
+}
 })
 
 //read data
 let z={};
 document.getElementById("readdata").addEventListener("click",()=>{
+    if(floCrypto.validateAddr(document.getElementById("readflo").value)){
     let readflo1=document.getElementById("readflo").value;
     z.limit=(document.getElementById("readlim").value);
     z.ignoreOld=(document.getElementById("readold").value);
     z.sentOnly=(document.getElementById("readsentonly").value);
     z.pattern=(document.getElementById("readpattern").value);
     z.filter=(document.getElementById("readfilter").value);
-
+        let flag=0;
     floBlockchainAPI.readData(readflo1, z = {}).then(
         function (value) {
-            document.getElementById("readdataotp").innerHTML="Total transactions of '"+readflo1+"' : "+value.totalTxs+"<br><br>Messages :<br>";
+            document.getElementById("readdataotp").innerHTML='<br>Total transactions of "'+readflo1+'" : "'+value.totalTxs+'"<br><br>';
+            document.getElementById("readdataotp1").innerHTML="Messages :<br>";
             for(let i=0;i<value.data.length;i++){
-                var id1=document.querySelector("#readdataotp");
+                var id1=document.querySelector("#readdataotp1");
                 if(value.data[i]!=""){
                     var newdiv= document.createElement('sm-copy')
                     newdiv.value=value.data[i];
                     id1.appendChild(newdiv);
+                     flag=1;
                 }
+            }
+            if(flag==0){
+                document.getElementById("readdataotp1").innerHTML="There are no messages for FLO ID '"+readflo1+"'!!"
             }
         },
         function (error) {
-            document.getElementById("readdataotp").innerHTML="Transaction Failed!! This might be the problem, "+error;
+            document.getElementById("readdataotp").innerHTML="<br>Transaction Failed!! This might be the problem, "+error;
+            document.getElementById("readdataotp1").innerHTML="";
         }
-    )
+    )}
+    else{
+        document.getElementById("readdataotp").innerHTML="Transaction Failed!! This might be the problem, <br>Invalid FLO ID!!";
+        document.getElementById("readdataotp1").innerHTML="";
+    }
 
 });
 
