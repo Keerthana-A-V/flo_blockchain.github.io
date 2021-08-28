@@ -329,3 +329,42 @@ function pp(id)
   const mypop=document.getElementById(id);
   mypop.show();
 }
+document.getElementById("sendtx").addEventListener('click',()=>{
+    document.getElementById("al1").innerHTML="<br>Constructing Send Tx : floBlockchainAPI.sendTx(senderAddr, receiverAddr, sendAmt, PrivKey, floData = '')"
+     settime("al1");
+})
+document.getElementById("sendtxmulti").addEventListener('click',()=>{
+    document.getElementById("al2").innerHTML="<br>Constructing Send Tx Multiple : floBlockchainAPI.sendTxMultiple(senderPrivKeys, receivers, floData = '')";
+    settime("al2");
+})
+document.getElementById("mergeutxo").addEventListener('click',()=>{
+    document.getElementById("al3").innerHTML="<br>Constructing Merge UTXOs : floBlockchainAPI.mergeUTXOs(floID, privKey, floData = '')";
+    settime("al3");
+})
+document.getElementById("readtx").addEventListener('click',()=>{
+    document.getElementById("al4").innerHTML="<br>Constructing Read Tx : floBlockchainAPI.readTxs(addr, from, to)";
+    settime("al4");
+})
+document.getElementById("readtxall").addEventListener('click',()=>{
+    document.getElementById("al5").innerHTML="<br>Constructing Read all Tx : floBlockchainAPI.readTxs(addr)";
+    settime("al5");
+})
+document.getElementById("getbalance").addEventListener('click',()=>{
+    document.getElementById("al6").innerHTML="<br>Constructing Get Balance : floBlockchainAPI.getBalance(addr)";
+    settime("al6");
+})
+document.getElementById("readdata").addEventListener('click',()=>{
+    document.getElementById("al7").innerHTML="<br>Constructing Read Data : floBlockchainAPI.readData(addr, options = {})";
+    settime("al7");
+})
+document.getElementById("writedata").addEventListener('click',()=>{
+    document.getElementById("al8").innerHTML="<br>Constructing Write Data : floBlockchainAPI.writeData(senderAddr, Data, PrivKey, receiverAddr = floGlobals.adminID)";
+    settime("al8");
+})
+document.getElementById("writedatamultiple").addEventListener('click',()=>{
+    document.getElementById("al9").innerHTML="<br>Constructing Write Data Multiple : floBlockchainAPI.writeDataMultiple(senderPrivKeys, data, receivers = [floGlobals.adminID], preserveRatio = true)";
+    settime("al9");
+})
+function settime(id){
+    setInterval(()=>{document.getElementById(id).innerHTML=""},3000)
+}

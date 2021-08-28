@@ -47,9 +47,15 @@ sm-button{
         margin-left: 35px;
         align-items: center;
     }
+    .option{
+        margin-left: auto;
+    }
 }
 .al1{
     color: gray;
     font-weight: lighter;
+    font-style: italic;
 }
-
+.option{
+    margin-left: 25%;
+}
