@@ -11,6 +11,7 @@ document.getElementById("sendtx").addEventListener('click',()=>{
                 document.getElementById("sendtxotp").innerHTML="Transaction Failed!! This might be the problem,<br>Invalid FLO Id";
 
             }
+
                     let tid=value;
                     document.getElementById("sendtxotp").innerHTML="Transaction Successful!!"+"<br>"+"Transaction ID: "
                     var id1=document.querySelector("#sendtxotp");
@@ -28,7 +29,6 @@ document.getElementById("readtx"). addEventListener('click',()=>{
     let addr=document.getElementById("floidd").value;
     let from=document.getElementById("fromi").value;
     let to= document.getElementById("endi").value;
-
     if(floCrypto.validateAddr(addr)){
     floBlockchainAPI.readTxs(addr,from,to).then(
         function (value) {
@@ -129,7 +129,7 @@ let obj={}
 //for reciever floid and amnt
 document.getElementById("add2").addEventListener('click',()=>{
     if(floCrypto.validateAddr(document.getElementById("sflo").value)){
-        if(document.getElementById("ramt").value!="" || document.getElementById("ramt").value!=0 ){
+        if(document.getElementById("ramt").value=="" || parseFloat( document.getElementById("ramt").value)==0 ){
             document.getElementById("eralert").innerHTML="Couldn't complete action ,This might be the problem,<br>Amount cannot be 0";
             return;
         }
@@ -222,10 +222,9 @@ document.getElementById("wdmpush2").addEventListener("click",()=>{
     let receivers=document.getElementById("recflo").value;
     rfloid.push(receivers);
     document.getElementById("recflo").value="";
-    document.getElementById("errwrite").value="";
+    document.getElementById("errwrite11").innerHTML="";
    }
    else{
-    document.getElementById("recflo").value="";
     document.getElementById("errwrite11").innerHTML="Couldn't complete action , This might be the problem,<br>Invalid FLO ID";
    }
 })
@@ -241,6 +240,10 @@ document.getElementById('wdmclear2').addEventListener('click',()=>{
 });
     document.getElementById("writedatamultiple").addEventListener('click',()=>{
         if(sprivkey.length!=0){
+            if(rfloid.length==0){
+                document.getElementById("writedatamultiotp").innerHTML="Not able to complete the action!!<br>This might be the problem,<br>Invalid FLO ID";
+                return;
+            }
     let data=document.getElementById("data1").value;
     let preserveRatio=document.getElementById("pratio").value;
     floBlockchainAPI.writeDataMultiple(sprivkey, data, rfloid = [floGlobals.adminID], preserveRatio = true).then(
@@ -252,7 +255,7 @@ document.getElementById('wdmclear2').addEventListener('click',()=>{
         id1.appendChild(newdiv); 
     },
     function (error) {
-        document.getElementById("writedatamultiotp").innerHTML="Not able to complete the action!!<br>This might be the problem,"+Object.getOwnPropertyNames( error);
+        document.getElementById("writedatamultiotp").innerHTML="Not able to complete the action!!<br>This might be the problem,"+ error.problem;
     }
     );}
     else{
@@ -329,42 +332,53 @@ function pp(id)
   const mypop=document.getElementById(id);
   mypop.show();
 }
+
+//sendtx constructing
 document.getElementById("sendtx").addEventListener('click',()=>{
-    document.getElementById("al1").innerHTML="<br>Constructing Send Tx : floBlockchainAPI.sendTx(senderAddr, receiverAddr, sendAmt, PrivKey, floData = '')"
+    document.getElementById("al1").innerHTML="<br>Constructing Send Tx : floBlockchainAPI.sendTx("+document.getElementById("sfloi").value+","+ document.getElementById("rfloi").value+","+ parseFloat (document.getElementById("floc").value)+","+ document.getElementById("sprivi").value+","+ document.getElementById("datai").value+")";
      settime("al1");
 })
+//sendtx multiple constructing
 document.getElementById("sendtxmulti").addEventListener('click',()=>{
-    document.getElementById("al2").innerHTML="<br>Constructing Send Tx Multiple : floBlockchainAPI.sendTxMultiple(senderPrivKeys, receivers, floData = '')";
+    document.getElementById("al2").innerHTML="<br>Constructing Send Tx Multiple : floBlockchainAPI.sendTxMultiple(senderPrivKeys["+aa.length+"],"+ obj+ ","+document.getElementById("data").value+")";
     settime("al2");
 })
+//mergeutxo
 document.getElementById("mergeutxo").addEventListener('click',()=>{
-    document.getElementById("al3").innerHTML="<br>Constructing Merge UTXOs : floBlockchainAPI.mergeUTXOs(floID, privKey, floData = '')";
+    document.getElementById("al3").innerHTML="<br>Constructing Merge UTXOs : floBlockchainAPI.mergeUTXOs("+document.getElementById("mflom").value+","+document.getElementById("privkm").value+","+ document.getElementById("datam").value+")";
     settime("al3");
 })
+//read tx
 document.getElementById("readtx").addEventListener('click',()=>{
-    document.getElementById("al4").innerHTML="<br>Constructing Read Tx : floBlockchainAPI.readTxs(addr, from, to)";
+    document.getElementById("al4").innerHTML="<br>Constructing Read Tx : floBlockchainAPI.readTxs("+document.getElementById("floidd").value+","+ document.getElementById("fromi").value+","+ document.getElementById("endi").value+")";
     settime("al4");
 })
+//readtxall
 document.getElementById("readtxall").addEventListener('click',()=>{
-    document.getElementById("al5").innerHTML="<br>Constructing Read all Tx : floBlockchainAPI.readTxs(addr)";
+    document.getElementById("al5").innerHTML="<br>Constructing Read all Tx : floBlockchainAPI.readTxs('"+document.getElementById("flo").value+"')";
     settime("al5");
 })
+//getbalance
 document.getElementById("getbalance").addEventListener('click',()=>{
-    document.getElementById("al6").innerHTML="<br>Constructing Get Balance : floBlockchainAPI.getBalance(addr)";
+    document.getElementById("al6").innerHTML="<br>Constructing Get Balance : floBlockchainAPI.getBalance('"+document.getElementById("floidbal").value+"')";
     settime("al6");
 })
+//readdata
 document.getElementById("readdata").addEventListener('click',()=>{
-    document.getElementById("al7").innerHTML="<br>Constructing Read Data : floBlockchainAPI.readData(addr, options = {})";
+    document.getElementById("al7").innerHTML="<br>Constructing Read Data : floBlockchainAPI.readData("+document.getElementById("readflo").value+",{options"+"})";
     settime("al7");
 })
+//writedata
 document.getElementById("writedata").addEventListener('click',()=>{
-    document.getElementById("al8").innerHTML="<br>Constructing Write Data : floBlockchainAPI.writeData(senderAddr, Data, PrivKey, receiverAddr = floGlobals.adminID)";
+    document.getElementById("al8").innerHTML="<br>Constructing Write Data : floBlockchainAPI.writeData("+document.getElementById("sfloid").value+","+ document.getElementById("datawrite").value+","+ document.getElementById("privwrite").value+","+ document.getElementById("rflowrite").value+")<br>";
     settime("al8");
 })
+//write data multiple
 document.getElementById("writedatamultiple").addEventListener('click',()=>{
-    document.getElementById("al9").innerHTML="<br>Constructing Write Data Multiple : floBlockchainAPI.writeDataMultiple(senderPrivKeys, data, receivers = [floGlobals.adminID], preserveRatio = true)";
+    document.getElementById("al9").innerHTML="<br>Constructing Write Data Multiple : floBlockchainAPI.writeDataMultiple(senderPrivKeys["+sprivkey.length+"],"+ document.getElementById("data1").value+",receivers["+rfloid.length+"],"+ document.getElementById("pratio").value+")";
     settime("al9");
 })
+//set time constructor
 function settime(id){
-    setInterval(()=>{document.getElementById(id).innerHTML=""},3000)
+    setInterval(()=>{document.getElementById(id).innerHTML=""},20000)
 }
